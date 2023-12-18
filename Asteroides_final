@@ -1,0 +1,2395 @@
+.text
+# ASTEROIDS - 512x256px - Unidade 4
+
+main: 
+	reiniciodojogo:
+	add $1, $0, $0
+	add $2, $0, $0
+	add $3, $0, $0
+	add $4, $0, $0
+	add $5, $0, $0
+	add $6, $0, $0
+	add $7, $0, $0
+	add $8, $0, $0
+	add $9, $0, $0
+	add $10, $0, $0
+	add $11, $0, $0
+	add $12, $0, $0
+	add $13, $0, $0
+	add $14, $0, $0
+	add $15, $0, $0
+	add $16, $0, $0
+	add $17, $0, $0
+	add $18, $0, $0
+	add $19, $0, $0
+	add $20, $0, $0
+	add $21, $0, $0
+	add $22, $0, $0
+	add $23, $0, $0
+	add $24, $0, $0
+	add $25, $0, $0
+	add $26, $0, $0
+	add $27, $0, $0
+	add $28, $0, $0
+	add $29, $0, $0
+	add $30, $0, $0
+	add $31, $0, $0
+	lui $8, 0x1001 # move 16 bits e adiciona primeira posição
+
+# pinta tela de 8 cores - efeito background
+# usa sem preservar: $9 - $10
+# $8 - relacionado a posição na memória
+# $9 - fica com o código das cores
+# $10 - funciona como um registrador de iteração 
+
+# CENÁRIO DO JOGO
+	addi $10, $0, 1024 # quantidade de pixels de cada faixa de cor. 128 x 8 = 1024
+	addi $9, $0, 0x000000 # faixa de cor 1
+for1:	beq $10, $0, for2i
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	addi $8, $8, 4
+	addi $10, $10, -1
+	j for1
+	
+for2i:	addi $10, $0, 1024
+	addi $9, $0, 0x040211 # faixa de cor 2	
+for2:	beq $10, $0, for3i
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	addi $8, $8, 4
+	addi $10, $10, -1
+	j for2
+	
+for3i:	addi $10, $0, 1024
+	addi $9, $0, 0x090422 # faixa de cor 3	
+for3:	beq $10, $0, for4i
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	addi $8, $8, 4
+	addi $10, $10, -1
+	j for3
+	
+for4i:  addi $10, $0, 1024
+	addi $9, $0, 0x0d0634 # faixa de cor 4
+for4:	beq $10, $0, for5i
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	addi $8, $8, 4
+	addi $10, $10, -1
+	j for4
+	
+for5i:	addi $10, $0, 1024
+	addi $9, $0, 0x120845 # faixa de cor 5
+for5:	beq $10, $0, for6i
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	addi $8, $8, 4
+	addi $10, $10, -1
+	j for5
+	
+for6i:  addi $10, $0, 1024
+	addi $9, $0, 0x160a57 # faixa de cor 6
+for6:	beq $10, $0, for7i
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	addi $8, $8, 4
+	addi $10, $10, -1
+	j for6
+	
+for7i:  addi $10, $0, 1024
+	addi $9, $0, 0x1b0c68 # faixa de cor 7
+for7:	beq $10, $0, for8i
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	addi $8, $8, 4
+	addi $10, $10, -1
+	j for7
+	
+for8i:  addi $10, $0, 1024
+	addi $9, $0, 0x1f0e7a # faixa de cor 8
+for8:	beq $10, $0, estrelas
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	addi $8, $8, 4
+	addi $10, $10, -1
+	j for8
+	
+# pinta estrelas
+estrelas: 
+	# cinzas
+	#	estrela 1
+	addi $9, $0, 0xcfd8dc # cor 
+	lui $8, 0x1001 
+	addi $8, $8, 2120
+	sw $9, 0($8) 
+	sw $9, 32768($8)# SHADOWN
+	#	estrela 2
+	lui $8, 0x1001 
+	addi $8, $8, 8176
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	
+	# amarelas
+	#	estrela 1
+	addi $9, $0, 0xffc107 # cor
+	lui $8, 0x1001 
+	addi $8, $8, 5672
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	#	estrela 2
+	lui $8, 0x1001 
+	addi $8, $8, 14788
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	#	estrela 3
+	lui $8, 0x1001 
+	addi $8, $8, 28412
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	
+	# azul
+	#	estrela 1
+	addi $9, $0, 0x42a5f5 # cor
+	lui $8, 0x1001 
+	addi $8, $8, 13360
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	#	estrela 2
+	lui $8, 0x1001 
+	addi $8, $8, 15752
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	
+	# roxo
+	#	estrela 1
+	addi $9, $0, 0xaa00ff # cor
+	lui $8, 0x1001 
+	addi $8, $8, 2976
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	#	estrela 2
+	lui $8, 0x1001 
+	addi $8, $8, 21120
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	#	estrela 2
+	lui $8, 0x1001 
+	addi $8, $8, 26664
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	#	estrela 2
+	lui $8, 0x1001 
+	addi $8, $8, 27028
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+# fim estrelas
+# FIM DO DESENHO DO CENÁRIO
+
+#	asteroides se movendo  - a partir daqui há movimentação
+
+# usa sem preservar: $9 - $10 
+# $1  recebe valor do input
+# $8 - controlar a posição da memória 
+# $9 - recebe cor dos asteroides (TODOS)
+# $10 -  verifica o SLT dos asteroides em geral (TODOS)
+# $11 - recebe última posição possível dos asteroides em geral para looping (TODOS)
+# $12 - salva valor do $31 para voltar 
+# $13 - controla as unidades gráficas dos (asteroides 1, 2 e 3)
+# $14 - controla as unidades gráficas dos (asteroides 4 e 5)
+# $20 - uso para alocar qtd de tempo
+
+	# Variáveis de início - Globais
+	addi $13, $0, -4868# controla posições dos asteroides 1, 2 e 3 
+	addi $11, $0, 32508 # posição limite asteroide 1, 2, 3, 4 e 5
+	addi $14, $0, 19072 # controla posições dos asteroides 4 e 5 
+	addi $15, $0, 0 # controla posição da nave 
+	add $16, $0, $0 # controla o tiro
+	addi $5, $0, 0 # avisar se tiro está acionado
+	addi $6, $0, 5
+	
+
+jogoemexecucao:
+	bne $0, $0, fim
+	# criar desenhos
+	jal npcAsteroideUm # movimenta o asteroide 1(npc)
+npcAsteroideDoisContCreate :
+	jal npcAsteroideDois 
+	jal npcAsteroideTres
+	jal npcAsteroideQuatro
+	jal npcAsteroideCinco
+	jal criarNave # Cria a nave
+	
+	jal time #dá um tempo
+	lui $1, 0xffff  # reg para ver se o user digitou algo
+	lw $17, 4($1) # se for diferente de zero, algo foi digitado.
+	beq $17, $0, continuajogo # checar se o user digitou alguma coisa
+	addi $18, $0, 'a'  
+	beq $17, $18, movenaveesquerda
+	addi $18, $0, 'd'
+	beq $17, $18, movenavedireita
+	addi $18, $0, 'w'
+	beq $17, $18, movenavecima
+	addi $18, $0, 's'
+	beq $17, $18, movenavebaixo
+	addi $18, $0, 'p'
+	beq $17, $18, movenavepower
+	addi $18, $0, ' '
+	beq $17, $18, tiroNave
+	# verificar colisões - em construção - usar reg 17 pra ver
+	#jal colisaoAteroideV1
+	
+continuajogo:
+	# verificação
+	jal verificarTiro
+	# deletar desenhos
+	jal deletarAsteroideUm # deleta o asteroide 1 (npc)
+depoisdelum:
+	jal deletarAsteroideDois
+	jal deletarAsteroideTres
+	jal deletarAsteroideQuatro
+	jal deletarAsteroideCinco
+	# colocar a função de reiniciar a posição do reg13 apenas se ele chegar em tal valor e reiniciar o valor do reg 13.
+	addi $13, $13, 512 # pula linha 1x - Asteroide versao 1
+	addi $14, $14, 512 # pula linha 1x - Asteroide versao 2
+	# criar função para se tiver tal valor ir pro fim do jogo.
+	beq $6, $0, fim
+	j jogoemexecucao
+
+colisaoAsteroideV1:
+	# s13 - asteroides v1 
+	# s14 - asteroides v2
+	# $15 - posição da nave
+colisaoAsteroideV2:
+	# s14 - asteroides v2
+	# $15 - posição da nave
+	
+movenavedireita:
+	jal deletarNave
+	# se "a"     
+	addi $15, $15, 4
+	j continuajogo
+	
+movenaveesquerda:
+	jal deletarNave
+	addi $15, $15, -4
+	j continuajogo
+	
+movenavecima:
+	jal deletarNave
+	addi $15, $15, -512
+	j continuajogo
+
+movenavebaixo:
+	jal deletarNave
+	addi $15, $15, 512
+	j continuajogo
+	
+movenavepower:
+	jal deletarNave
+	addi $15, $15, -1024
+	j continuajogo
+
+tiroNave: 
+	# endereço da ponta de cima da nave - 15612
+	# se basear pela posição da nave - reg 15
+	# SE $5 = 1 
+	# lançar tiro
+	
+	addi $5, $0, 1 # avisar tiro acionado
+	addi $9, $0, 0xccffff # cor do tiro 
+	jal resetOito
+	add $8, $8, $15 # controla o lugar do tiro
+	addi $8, $8, 15612  # endereço da ponta de cima da nave - 15612
+	
+	add $8, $8, $16 # reg 16 incrementa
+	
+	# cria
+	sw $9, -512($8) #  15612 - 512 
+	sw $9, -512($8)
+	
+	
+	add $4, $0, $8 # adicionar posição do tiro
+	
+	# apaga 
+	addi $8, $8, 512
+	lw $9, 32768($8) # tirando a cor da shadown
+	sw $9, 0($8)	# coloca no cenário principal
+	sw $9, 32768($8) # devolve a cor pro shadown
+	
+	addi $8, $8, 512
+	lw $9, 32768($8) # tirando a cor da shadown
+	sw $9, 0($8)	# coloca no cenário principal
+	sw $9, 32768($8) # devolve a cor pro shadown
+	
+	j continuajogo
+
+verificarTiro:
+	bne $5, $0, incrementaTiro # $5 = 1 então o tiro tá em execução 
+naoTiro:
+	add $16, $0, $0 # sem incremento
+	add $5, $0, $0 # Tiro desativado
+	j voltaVerificarTiro
+
+incrementaTiro:
+	# verificar limite do tiro  
+	slt $17, $8, $0
+	bne $17,$0, naoTiro 
+	addi $16, $16, -512 # ficar incrementando tiro pra cima
+	
+	# ver se tiro passou do ponto - em construção
+	
+	
+voltaVerificarTiro: 
+	jr $31
+	
+	# colisões
+	
+	
+	
+	
+# ASTEROIDE 1
+npcAsteroideUm: 
+	add $12, $0, $31 # salvar valor do $31 - Cópia de segurança
+	jal resetOito # reseta o reg8
+	add $8, $8, $13
+	#bne $7, $0, deletarAsteroideUm
+	bne $7, $0, npcAsteroideDoisContCreate
+	addi $9, $0, 0xf7f7f7 # cor do asteroide
+	
+	# pixel 1 - parte de cima
+	sw $9, 0($8)	
+	beq $4, $8, atirouAsteroide
+	# colisão com nave
+
+	# pixel 2 - parte de cima
+	addi $8, $8, 4	
+	sw $9, 0($8)
+	beq $4, $8, atirouAsteroide
+	
+	# pixel 3 - parte de cima
+	addi $8, $8, -8   
+	sw $9, 0($8)
+	beq $4, $8, atirouAsteroide
+		
+	# pixel 4 - parte de cima
+	addi $8, $8, -4
+	sw $9, 0($8)
+	beq $4, $8, atirouAsteroide
+	
+	# pixel 5 - diagonal esquerda cima
+	addi $8, $8, 508
+	sw $9, 0($8)
+	beq $4, $8, atirouAsteroide
+	
+	# pixel 6 - diagonal esquerda cima
+	addi $8, $8, 508
+	sw $9, 0($8)
+	beq $4, $8, atirouAsteroide
+			
+	# pixel 7 - coluna esquerda 
+	addi $8, $8, 508
+	sw $9, 0($8)
+	beq $4, $8, atirouAsteroide
+	
+	# pixel 8 - coluna esquerda 
+	addi $8, $8, 512
+	sw $9, 0($8)
+	beq $4, $8, atirouAsteroide
+	
+	# pixel 9 - coluna esquerda 
+	addi $8, $8, 512
+	sw $9, 0($8)
+	beq $4, $8, atirouAsteroide
+	
+	# pixel 10 - diagonal esquerda baixo
+	addi $8, $8, 516
+	sw $9, 0($8)
+	beq $4, $8, atirouAsteroide
+	
+	# pixel 11 - diagonal esquerda baixo
+	addi $8, $8, 516
+	sw $9, 0($8)
+	beq $4, $8, atirouAsteroide
+	
+	# pixel 12 - parte de baixo
+	addi $8, $8, 516
+	sw $9, 0($8)
+	beq $4, $8, atirouAsteroide
+	
+	# pixel 13 - parte de baixo
+	addi $8, $8, 4
+	sw $9, 0($8)
+	beq $4, $8, atirouAsteroide
+	
+	# pixel 14 - parte de baixo
+	addi $8, $8, 4
+	sw $9, 0($8)
+	beq $4, $8, atirouAsteroide
+	
+	# pixel 15 - parte de baixo
+	addi $8, $8, 4
+	sw $9, 0($8)
+	beq $4, $8, atirouAsteroide
+	
+	# pixel 16 - diagonal direita baixo
+	addi $8, $8, -508
+	sw $9, 0($8)
+	beq $4, $8, atirouAsteroide
+	
+	# pixel 17 - diagonal direita baixo
+	addi $8, $8, -508
+	sw $9, 0($8)
+	beq $4, $8, atirouAsteroide
+	
+	# pixel 18 - coluna direita
+	addi $8, $8, -508
+	sw $9, 0($8)
+	beq $4, $8, atirouAsteroide
+	
+	# pixel 19 - coluna direita
+	addi $8, $8, -512
+	sw $9, 0($8)
+	beq $4, $8, atirouAsteroide
+	
+	# pixel 20 - coluna direita
+	addi $8, $8, -512
+	sw $9, 0($8)
+	beq $4, $8, atirouAsteroide
+	
+	# pixel 21 - diagonal direita cima
+	addi $8, $8, -516
+	sw $9, 0($8)
+	beq $4, $8, atirouAsteroide
+	
+	# pixel 20 - diagonal direita cima
+	addi $8, $8, -516
+	sw $9, 0($8)
+	beq $4, $8, atirouAsteroide
+			
+	# finalizando e recuperando o valor de $31
+	add $31, $0, $12 
+	jr $31
+	
+	
+atirouAsteroide:
+	addi $6, $6, -1 # ponto por atirar
+	addi $7, $0, 1 # sinalizar atirado
+	add $5, $0, $0 # Tiro ativado
+	add $31, $0, $12  # salvar o valor do prox
+	j deletarAsteroideUm
+	
+deletarAsteroideUm:
+	#add $12, $0, $31 # salvar valor do $31 - Cópia de segurança
+	jal resetOito
+	add $8, $8, $13
+	
+	# pixel 1 - parte de cima
+	lw $9, 32768($8) # tirando a cor da shadown
+	sw $9, 0($8)	# coloca no cenário principal
+	sw $9, 32768($8) # devolve a cor pro shadown
+	
+	# pixel 2 - parte de cima
+	addi $8, $8, 4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8) 
+	
+	# pixel 3 - parte de cima
+	addi $8, $8, -8
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 4 - parte de cima
+	addi $8, $8, -4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 5 - diagonal esquerda cima
+	addi $8, $8, 508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 6 - diagonal esquerda cima
+	addi $8, $8, 508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 7 - coluna esquerda 
+	addi $8, $8, 508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 8 - coluna esquerda 
+	addi $8, $8, 512
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 9 - coluna esquerda 
+	addi $8, $8, 512
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 10 - diagonal esquerda baixo
+	addi $8, $8, 516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 11 - diagonal esquerda baixo
+	addi $8, $8, 516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 12 - parte de baixo 
+	addi $8, $8, 516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 13 - parte de baixo 
+	addi $8, $8, 4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 14 - parte de baixo
+	addi $8, $8, 4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 15 - parte de baixo
+	addi $8, $8, 4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 16 - diagonal direita baixo
+	addi $8, $8, -508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 17 - diagonal direita baixo
+	addi $8, $8, -508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 18 - coluna direita
+	addi $8, $8, -508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 19 - coluna direita
+	addi $8, $8, -512
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 20 - coluna direita
+	addi $8, $8, -512
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 21 - diagonal direita cima
+	addi $8, $8, -516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 22 - diagonal direita cima
+	addi $8, $8, -516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# fazer o asteroide voltar pra posição inicial quando chegar no fim (em construção)
+	# Se 33.020 < $13, o reg 13 volta a ser 754 e recomeça (looping)
+	#slt $10, $11, $13
+	#bne $10, $0, asteroideCimaPosInicial
+	
+	# finalizando
+	add $31, $0, $12 # recuperando o valor de $31
+	#jr $31
+	j depoisdelum
+	
+	
+# ASTEROIDE 2
+npcAsteroideDois:
+	add $12, $0, $31 # salvar valor do $31 - Cópia de segurança
+	jal resetOito # reseta o reg8
+	add $8, $8, $13
+	addi $8, $8, 324#292
+	# Contas para transformar o valor do $13 no novo valor
+	
+	addi $9, $0, 0xf7f7f7 # cor do asteroide
+	
+	# pixel 1 - parte de cima
+	sw $9, 0($8)	
+	
+	# pixel 2 - parte de cima
+	addi $8, $8, 4	
+	sw $9, 0($8)	
+	
+	# pixel 3 - parte de cima
+	addi $8, $8, -8
+	sw $9, 0($8)
+		
+	# pixel 4 - parte de cima
+	addi $8, $8, -4
+	sw $9, 0($8)
+	
+	# pixel 5 - diagonal esquerda cima
+	addi $8, $8, 508
+	sw $9, 0($8)
+	
+	# pixel 6 - diagonal esquerda cima
+	addi $8, $8, 508
+	sw $9, 0($8)
+			
+	# pixel 7 - coluna esquerda 
+	addi $8, $8, 508
+	sw $9, 0($8)
+	
+	# pixel 8 - coluna esquerda 
+	addi $8, $8, 512
+	sw $9, 0($8)
+	
+	# pixel 9 - coluna esquerda 
+	addi $8, $8, 512
+	sw $9, 0($8)
+	
+	# pixel 10 - diagonal esquerda baixo
+	addi $8, $8, 516
+	sw $9, 0($8)
+	
+	# pixel 11 - diagonal esquerda baixo
+	addi $8, $8, 516
+	sw $9, 0($8)
+	
+	# pixel 12 - parte de baixo
+	addi $8, $8, 516
+	sw $9, 0($8)
+	
+	# pixel 13 - parte de baixo
+	addi $8, $8, 4
+	sw $9, 0($8)
+	
+	# pixel 14 - parte de baixo
+	addi $8, $8, 4
+	sw $9, 0($8)
+	
+	# pixel 15 - parte de baixo
+	addi $8, $8, 4
+	sw $9, 0($8)
+	
+	# pixel 16 - diagonal direita baixo
+	addi $8, $8, -508
+	sw $9, 0($8)
+	
+	# pixel 17 - diagonal direita baixo
+	addi $8, $8, -508
+	sw $9, 0($8)
+	
+	# pixel 18 - coluna direita
+	addi $8, $8, -508
+	sw $9, 0($8)
+	
+	# pixel 19 - coluna direita
+	addi $8, $8, -512
+	sw $9, 0($8)
+	
+	# pixel 20 - coluna direita
+	addi $8, $8, -512
+	sw $9, 0($8)
+	
+	# pixel 21 - diagonal direita cima
+	addi $8, $8, -516
+	sw $9, 0($8)
+	
+	# pixel 20 - diagonal direita cima
+	addi $8, $8, -516
+	sw $9, 0($8)
+			
+	# finalizando e recuperando o valor de $31
+	add $31, $0, $12 
+	jr $31
+
+deletarAsteroideDois:
+	add $12, $0, $31 # salvar valor do $31 - Cópia de segurança
+	jal resetOito
+	add $8, $8, $13
+	addi $8, $8, 324# Contas para transformar o valor do $13 no novo valor
+	
+	# pixel 1 - parte de cima
+	lw $9, 32768($8) # tirando a cor da shadown
+	sw $9, 0($8)	# coloca no cenário principal
+	sw $9, 32768($8) # devolve a cor pro shadown
+	
+	# pixel 2 - parte de cima
+	addi $8, $8, 4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8) 
+	
+	# pixel 3 - parte de cima
+	addi $8, $8, -8
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 4 - parte de cima
+	addi $8, $8, -4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 5 - diagonal esquerda cima
+	addi $8, $8, 508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 6 - diagonal esquerda cima
+	addi $8, $8, 508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 7 - coluna esquerda 
+	addi $8, $8, 508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 8 - coluna esquerda 
+	addi $8, $8, 512
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 9 - coluna esquerda 
+	addi $8, $8, 512
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 10 - diagonal esquerda baixo
+	addi $8, $8, 516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 11 - diagonal esquerda baixo
+	addi $8, $8, 516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 12 - parte de baixo 
+	addi $8, $8, 516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 13 - parte de baixo 
+	addi $8, $8, 4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 14 - parte de baixo
+	addi $8, $8, 4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 15 - parte de baixo
+	addi $8, $8, 4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 16 - diagonal direita baixo
+	addi $8, $8, -508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 17 - diagonal direita baixo
+	addi $8, $8, -508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 18 - coluna direita
+	addi $8, $8, -508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 19 - coluna direita
+	addi $8, $8, -512
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 20 - coluna direita
+	addi $8, $8, -512
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 21 - diagonal direita cima
+	addi $8, $8, -516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 22 - diagonal direita cima
+	addi $8, $8, -516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+
+	# finalizando
+	add $31, $0, $12 # recuperando o valor de $31
+	jr $31
+	
+	
+# ASTEROIDE 3
+npcAsteroideTres:
+	add $12, $0, $31 # salvar valor do $31 - Cópia de segurança
+	jal resetOito # reseta o reg8
+	add $8, $8, $13
+	addi $8, $8, 708
+	# Contas para transformar o valor do $13 no novo valor
+	
+	addi $9, $0, 0xf7f7f7 # cor do asteroide
+	
+	# pixel 1 - parte de cima
+	sw $9, 0($8)	
+	
+	# pixel 2 - parte de cima
+	addi $8, $8, 4	
+	sw $9, 0($8)	
+	
+	# pixel 3 - parte de cima
+	addi $8, $8, -8
+	sw $9, 0($8)
+		
+	# pixel 4 - parte de cima
+	addi $8, $8, -4
+	sw $9, 0($8)
+	
+	# pixel 5 - diagonal esquerda cima
+	addi $8, $8, 508
+	sw $9, 0($8)
+	
+	# pixel 6 - diagonal esquerda cima
+	addi $8, $8, 508
+	sw $9, 0($8)
+			
+	# pixel 7 - coluna esquerda 
+	addi $8, $8, 508
+	sw $9, 0($8)
+	
+	# pixel 8 - coluna esquerda 
+	addi $8, $8, 512
+	sw $9, 0($8)
+	
+	# pixel 9 - coluna esquerda 
+	addi $8, $8, 512
+	sw $9, 0($8)
+	
+	# pixel 10 - diagonal esquerda baixo
+	addi $8, $8, 516
+	sw $9, 0($8)
+	
+	# pixel 11 - diagonal esquerda baixo
+	addi $8, $8, 516
+	sw $9, 0($8)
+	
+	# pixel 12 - parte de baixo
+	addi $8, $8, 516
+	sw $9, 0($8)
+	
+	# pixel 13 - parte de baixo
+	addi $8, $8, 4
+	sw $9, 0($8)
+	
+	# pixel 14 - parte de baixo
+	addi $8, $8, 4
+	sw $9, 0($8)
+	
+	# pixel 15 - parte de baixo
+	addi $8, $8, 4
+	sw $9, 0($8)
+	
+	# pixel 16 - diagonal direita baixo
+	addi $8, $8, -508
+	sw $9, 0($8)
+	
+	# pixel 17 - diagonal direita baixo
+	addi $8, $8, -508
+	sw $9, 0($8)
+	
+	# pixel 18 - coluna direita
+	addi $8, $8, -508
+	sw $9, 0($8)
+	
+	# pixel 19 - coluna direita
+	addi $8, $8, -512
+	sw $9, 0($8)
+	
+	# pixel 20 - coluna direita
+	addi $8, $8, -512
+	sw $9, 0($8)
+	
+	# pixel 21 - diagonal direita cima
+	addi $8, $8, -516
+	sw $9, 0($8)
+	
+	# pixel 20 - diagonal direita cima
+	addi $8, $8, -516
+	sw $9, 0($8)
+			
+	# finalizando e recuperando o valor de $31
+	add $31, $0, $12 
+	jr $31
+	
+deletarAsteroideTres:
+	add $12, $0, $31 # salvar valor do $31 - Cópia de segurança
+	jal resetOito
+	add $8, $8, $13
+	addi $8, $8, 708 # Contas para transformar o valor do $13 no novo valor
+	
+	# pixel 1 - parte de cima
+	lw $9, 32768($8) # tirando a cor da shadown
+	sw $9, 0($8)	# coloca no cenário principal
+	sw $9, 32768($8) # devolve a cor pro shadown
+	
+	# pixel 2 - parte de cima
+	addi $8, $8, 4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8) 
+	
+	# pixel 3 - parte de cima
+	addi $8, $8, -8
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 4 - parte de cima
+	addi $8, $8, -4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 5 - diagonal esquerda cima
+	addi $8, $8, 508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 6 - diagonal esquerda cima
+	addi $8, $8, 508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 7 - coluna esquerda 
+	addi $8, $8, 508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 8 - coluna esquerda 
+	addi $8, $8, 512
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 9 - coluna esquerda 
+	addi $8, $8, 512
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 10 - diagonal esquerda baixo
+	addi $8, $8, 516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 11 - diagonal esquerda baixo
+	addi $8, $8, 516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 12 - parte de baixo 
+	addi $8, $8, 516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 13 - parte de baixo 
+	addi $8, $8, 4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 14 - parte de baixo
+	addi $8, $8, 4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 15 - parte de baixo
+	addi $8, $8, 4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 16 - diagonal direita baixo
+	addi $8, $8, -508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 17 - diagonal direita baixo
+	addi $8, $8, -508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 18 - coluna direita
+	addi $8, $8, -508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 19 - coluna direita
+	addi $8, $8, -512
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 20 - coluna direita
+	addi $8, $8, -512
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 21 - diagonal direita cima
+	addi $8, $8, -516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 22 - diagonal direita cima
+	addi $8, $8, -516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# fazer o asteroide voltar pra posição inicial quando chegar no fim
+	
+	slt $10, $11, $13
+	bne $10, $0, asteroidePosInicial
+	
+continuaDeleteAsteroideTres:
+	# finalizando
+	add $31, $0, $12 # recuperando o valor de $31
+	jr $31
+	
+	
+# ASTEROIDE 4
+npcAsteroideQuatro:
+	add $12, $0, $31 # salvar valor do $31 - Cópia de segurança
+	jal resetOito # reseta o reg8
+	add $8, $8, $14
+	addi $8, $8, 32 # Contas para transformar o valor do $13 no novo valor
+	# se passar de tal valor, volta a ser 14188
+	# 
+	#slt 
+
+	
+	addi $9, $0, 0xf7f7f7 # cor do asteroide
+	
+	# pixel 1 - parte de cima
+	sw $9, 0($8)	
+	
+	# pixel 2 - parte de cima
+	addi $8, $8, 4	
+	sw $9, 0($8)	
+	
+	# pixel 3 - parte de cima
+	addi $8, $8, -8
+	sw $9, 0($8)
+		
+	# pixel 4 - parte de cima
+	addi $8, $8, -4
+	sw $9, 0($8)
+	
+	# pixel 5 - diagonal esquerda cima
+	addi $8, $8, 508
+	sw $9, 0($8)
+	
+	# pixel 6 - diagonal esquerda cima
+	addi $8, $8, 508
+	sw $9, 0($8)
+			
+	# pixel 7 - coluna esquerda 
+	addi $8, $8, 508
+	sw $9, 0($8)
+	
+	# pixel 8 - coluna esquerda 
+	addi $8, $8, 512
+	sw $9, 0($8)
+	
+	# pixel 9 - coluna esquerda 
+	addi $8, $8, 512
+	sw $9, 0($8)
+	
+	# pixel 10 - diagonal esquerda baixo
+	addi $8, $8, 516
+	sw $9, 0($8)
+	
+	# pixel 11 - diagonal esquerda baixo
+	addi $8, $8, 516
+	sw $9, 0($8)
+	
+	# pixel 12 - parte de baixo
+	addi $8, $8, 516
+	sw $9, 0($8)
+	
+	# pixel 13 - parte de baixo
+	addi $8, $8, 4
+	sw $9, 0($8)
+	
+	# pixel 14 - parte de baixo
+	addi $8, $8, 4
+	sw $9, 0($8)
+	
+	# pixel 15 - parte de baixo
+	addi $8, $8, 4
+	sw $9, 0($8)
+	
+	# pixel 16 - diagonal direita baixo
+	addi $8, $8, -508
+	sw $9, 0($8)
+	
+	# pixel 17 - diagonal direita baixo
+	addi $8, $8, -508
+	sw $9, 0($8)
+	
+	# pixel 18 - coluna direita
+	addi $8, $8, -508
+	sw $9, 0($8)
+	
+	# pixel 19 - coluna direita
+	addi $8, $8, -512
+	sw $9, 0($8)
+	
+	# pixel 20 - coluna direita
+	addi $8, $8, -512
+	sw $9, 0($8)
+	
+	# pixel 21 - diagonal direita cima
+	addi $8, $8, -516
+	sw $9, 0($8)
+	
+	# pixel 20 - diagonal direita cima
+	addi $8, $8, -516
+	sw $9, 0($8)
+			
+	# finalizando e recuperando o valor de $31
+	add $31, $0, $12 
+	jr $31
+	
+deletarAsteroideQuatro:
+	add $12, $0, $31 # salvar valor do $31 - Cópia de segurança
+	jal resetOito
+	add $8, $8, $14
+	addi $8, $8, 32 # Contas para transformar o valor do $13 no novo valor
+	
+	# pixel 1 - parte de cima
+	lw $9, 32768($8) # tirando a cor da shadown
+	sw $9, 0($8)	# coloca no cenário principal
+	sw $9, 32768($8) # devolve a cor pro shadown
+	
+	# pixel 2 - parte de cima
+	addi $8, $8, 4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8) 
+	
+	# pixel 3 - parte de cima
+	addi $8, $8, -8
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 4 - parte de cima
+	addi $8, $8, -4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 5 - diagonal esquerda cima
+	addi $8, $8, 508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 6 - diagonal esquerda cima
+	addi $8, $8, 508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 7 - coluna esquerda 
+	addi $8, $8, 508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 8 - coluna esquerda 
+	addi $8, $8, 512
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 9 - coluna esquerda 
+	addi $8, $8, 512
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 10 - diagonal esquerda baixo
+	addi $8, $8, 516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 11 - diagonal esquerda baixo
+	addi $8, $8, 516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 12 - parte de baixo 
+	addi $8, $8, 516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 13 - parte de baixo 
+	addi $8, $8, 4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 14 - parte de baixo
+	addi $8, $8, 4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 15 - parte de baixo
+	addi $8, $8, 4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 16 - diagonal direita baixo
+	addi $8, $8, -508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 17 - diagonal direita baixo
+	addi $8, $8, -508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 18 - coluna direita
+	addi $8, $8, -508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 19 - coluna direita
+	addi $8, $8, -512
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 20 - coluna direita
+	addi $8, $8, -512
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 21 - diagonal direita cima
+	addi $8, $8, -516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 22 - diagonal direita cima
+	addi $8, $8, -516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# fazer o asteroide voltar pra posição inicial quando chegar no fim
+	
+	#slt $10, $11, $14
+	#bne $10, $0, asteroideV2PosInicial
+	
+#continuaDeleteAsteroideV2:
+	# finalizando
+	add $31, $0, $12 # recuperando o valor de $31
+	jr $31
+	
+	
+# ASTEROIDE 5
+npcAsteroideCinco:
+	add $12, $0, $31 # salvar valor do $31 - Cópia de segurança
+	jal resetOito # reseta o reg8
+	add $8, $8, $14
+	addi $8, $8, 272 # Contas para transformar o valor do $13 no novo valor
+	# se passar de tal valor, volta a ser 14188
+	# 
+	#slt 
+	addi $9, $0, 0xf7f7f7 # cor do asteroide
+	
+	# pixel 1 - parte de cima
+	sw $9, 0($8)	
+	
+	# pixel 2 - parte de cima
+	addi $8, $8, 4	
+	sw $9, 0($8)	
+	
+	# pixel 3 - parte de cima
+	addi $8, $8, -8
+	sw $9, 0($8)
+		
+	# pixel 4 - parte de cima
+	addi $8, $8, -4
+	sw $9, 0($8)
+	
+	# pixel 5 - diagonal esquerda cima
+	addi $8, $8, 508
+	sw $9, 0($8)
+	
+	# pixel 6 - diagonal esquerda cima
+	addi $8, $8, 508
+	sw $9, 0($8)
+			
+	# pixel 7 - coluna esquerda 
+	addi $8, $8, 508
+	sw $9, 0($8)
+	
+	# pixel 8 - coluna esquerda 
+	addi $8, $8, 512
+	sw $9, 0($8)
+	
+	# pixel 9 - coluna esquerda 
+	addi $8, $8, 512
+	sw $9, 0($8)
+	
+	# pixel 10 - diagonal esquerda baixo
+	addi $8, $8, 516
+	sw $9, 0($8)
+	
+	# pixel 11 - diagonal esquerda baixo
+	addi $8, $8, 516
+	sw $9, 0($8)
+	
+	# pixel 12 - parte de baixo
+	addi $8, $8, 516
+	sw $9, 0($8)
+	
+	# pixel 13 - parte de baixo
+	addi $8, $8, 4
+	sw $9, 0($8)
+	
+	# pixel 14 - parte de baixo
+	addi $8, $8, 4
+	sw $9, 0($8)
+	
+	# pixel 15 - parte de baixo
+	addi $8, $8, 4
+	sw $9, 0($8)
+	
+	# pixel 16 - diagonal direita baixo
+	addi $8, $8, -508
+	sw $9, 0($8)
+	
+	# pixel 17 - diagonal direita baixo
+	addi $8, $8, -508
+	sw $9, 0($8)
+	
+	# pixel 18 - coluna direita
+	addi $8, $8, -508
+	sw $9, 0($8)
+	
+	# pixel 19 - coluna direita
+	addi $8, $8, -512
+	sw $9, 0($8)
+	
+	# pixel 20 - coluna direita
+	addi $8, $8, -512
+	sw $9, 0($8)
+	
+	# pixel 21 - diagonal direita cima
+	addi $8, $8, -516
+	sw $9, 0($8)
+	
+	# pixel 20 - diagonal direita cima
+	addi $8, $8, -516
+	sw $9, 0($8)
+			
+	# finalizando e recuperando o valor de $31
+	add $31, $0, $12 
+	jr $31
+	
+deletarAsteroideCinco:
+	add $12, $0, $31 # salvar valor do $31 - Cópia de segurança
+	jal resetOito
+	add $8, $8, $14
+	addi $8, $8, 272 # Contas para transformar o valor do $13 no novo valor
+	
+	# pixel 1 - parte de cima
+	lw $9, 32768($8) # tirando a cor da shadown
+	sw $9, 0($8)	# coloca no cenário principal
+	sw $9, 32768($8) # devolve a cor pro shadown
+	
+	# pixel 2 - parte de cima
+	addi $8, $8, 4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8) 
+	
+	# pixel 3 - parte de cima
+	addi $8, $8, -8
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 4 - parte de cima
+	addi $8, $8, -4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 5 - diagonal esquerda cima
+	addi $8, $8, 508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 6 - diagonal esquerda cima
+	addi $8, $8, 508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 7 - coluna esquerda 
+	addi $8, $8, 508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 8 - coluna esquerda 
+	addi $8, $8, 512
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 9 - coluna esquerda 
+	addi $8, $8, 512
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 10 - diagonal esquerda baixo
+	addi $8, $8, 516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 11 - diagonal esquerda baixo
+	addi $8, $8, 516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 12 - parte de baixo 
+	addi $8, $8, 516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 13 - parte de baixo 
+	addi $8, $8, 4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 14 - parte de baixo
+	addi $8, $8, 4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 15 - parte de baixo
+	addi $8, $8, 4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 16 - diagonal direita baixo
+	addi $8, $8, -508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 17 - diagonal direita baixo
+	addi $8, $8, -508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 18 - coluna direita
+	addi $8, $8, -508
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 19 - coluna direita
+	addi $8, $8, -512
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 20 - coluna direita
+	addi $8, $8, -512
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 21 - diagonal direita cima
+	addi $8, $8, -516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# pixel 22 - diagonal direita cima
+	addi $8, $8, -516
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8)
+	
+	# fazer o asteroide voltar pra posição inicial quando chegar no fim
+	
+	slt $10, $11, $14
+	bne $10, $0, asteroideV2PosInicial
+	
+continuaDeleteAsteroideV2:
+	# finalizando
+	add $31, $0, $12 # recuperando o valor de $31
+	jr $31
+	
+criarNave: # Criar nave
+	add $12, $0, $31 # salvar valor do $31 - Cópia de segurança
+	jal resetOito # reseta o reg8
+	add $8, $8, $15
+	
+	# ponto 1 - base triangulo
+	addi $8, $8, 17648 # Contas para transformar o valor do $13 no novo valor
+	addi $9, $0, 0xffffff # cor
+	sw $9, 0($8)
+	
+	#	ponto 2 - base triangulo
+	addi $8, $8, 4#17652
+	sw $9, 0($8)
+	#	ponto 3 - base triangulo
+	addi $8, $8, 4 #17656
+	sw $9, 0($8)
+	#	ponto 4 - base triangulo
+	addi $8, $8, 4#17660
+	sw $9, 0($8)
+	#	ponto 5 - base triangulo
+	addi $8, $8, 4#17664
+	sw $9, 0($8)
+	#	ponto 6 - base triangulo
+	addi $8, $8, 4#17668
+	sw $9, 0($8)
+	#	ponto 7 - base triangulo
+	addi $8, $8, 4#17672
+	sw $9, 0($8)
+	#	ponto 8 - lado esquerdo triangulo 
+	addi $8, $8, -532 #17140
+	sw $9, 0($8)
+	#	ponto 9 - lado esquerdo triangulo 
+	addi $8, $8, -508 #16632
+	sw $9, 0($8)
+	#	ponto 10 - lado direito triangulo 
+	addi $8, $8, 8 #16640
+	sw $9, 0($8)
+	#	ponto 11 - lado direito triangulo 
+	addi $8, $8, 516 #17156
+	sw $9, 0($8)
+	#	ponto 12 - ponta de cima do triangulo (o de baixo)
+	addi $8, $8, -1032#16124
+	sw $9, 0($8)
+	#	ponto 13 - ponta de cima do triangulo (o de cima)
+	addi $8, $8, -512#15612
+	sw $9, 0($8)
+	
+	# finalizando
+	add $31, $0, $12  # devolve valor para o reg31
+	jr $31
+	
+deletarNave:
+	add $12, $0, $31 # salvar valor do $31 - Cópia de segurança
+	jal resetOito
+	add $8, $8, $15
+	
+	# pixel 1 - parte de cima
+	addi $8, $8, 17648 # Contas para transformar o valor do $13 no novo valor
+	lw $9, 32768($8) # tirando a cor da shadown
+	sw $9, 0($8)	# coloca no cenário principal
+	sw $9, 32768($8) # devolve a cor pro shadown
+	#	ponto 2 - base triangulo
+	addi $8, $8, 4
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8) 
+	#	ponto 3 - base triangulo
+	addi $8, $8, 4 #17656
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8) 
+	#	ponto 4 - base triangulo
+	addi $8, $8, 4#17660
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8) 
+	#	ponto 5 - base triangulo
+	addi $8, $8, 4#17664
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8) 
+	#	ponto 6 - base triangulo
+	addi $8, $8, 4#17668
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8) 
+	#	ponto 7 - base triangulo
+	addi $8, $8, 4#17672
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8) 
+	#	ponto 8 - lado esquerdo triangulo 
+	addi $8, $8, -532 #17140
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8) 
+	#	ponto 9 - lado esquerdo triangulo 
+	addi $8, $8, -508 #16632
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8) 
+	#	ponto 10 - lado direito triangulo 
+	addi $8, $8, 8 #16640
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8) 
+	#	ponto 11 - lado direito triangulo 
+	addi $8, $8, 516 #17156
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8) 
+	#	ponto 12 - ponta de cima do triangulo (o de baixo)
+	addi $8, $8, -1032#16124
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8) 
+	#	ponto 13 - ponta de cima do triangulo (o de cima)
+	addi $8, $8, -512#15612
+	lw $9, 32768($8) 
+	sw $9, 0($8)	
+	sw $9, 32768($8) 
+	
+	# finalizando
+	add $31, $0, $12  # devolve valor para o reg31
+	jr $31
+
+resetOito:
+	lui $8, 0x1001
+	jr $31
+
+# Dar um tempo
+time:	
+	addi $20, $0, 20000
+foriniciotime:
+	beq $20, $0, fimTime
+        nop
+        addi $20, $20, -1 
+        j foriniciotime
+fimTime:
+	jr $31
+
+
+
+#Fim do jogo
+	
+fim:
+fimmesmo:
+	#add $12, $0, $31 # salvar valor do $31 - Cópia de segurança
+	#jal resetOito # reseta o reg8
+	#add $8, $8, $15
+	# tela de fim de jogo
+	# FIM VITÓRIA
+	lui $8, 0x1001 # move 16 bits e adiciona primeira posição
+
+# pinta tela de 8 cores - efeito background
+# usa sem preservar: $9 - $10
+# $8 - relacionado a posição na memória
+# $9 - fica com o código das cores
+# $10 - funciona como um registrador de iteração 
+
+# CENÁRIO DO JOGO
+	addi $10, $0, 1024 # quantidade de pixels de cada faixa de cor. 128 x 8 = 1024
+	addi $9, $0, 0x000000 # faixa de cor 1
+forf1:	beq $10, $0, forf2i
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	addi $8, $8, 4
+	addi $10, $10, -1
+	j forf1
+	
+forf2i:	addi $10, $0, 1024
+	addi $9, $0, 0x040211 # faixa de cor 2	
+forf2:	beq $10, $0, forf3i
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	addi $8, $8, 4
+	addi $10, $10, -1
+	j forf2
+	
+forf3i:	addi $10, $0, 1024
+	addi $9, $0, 0x090422 # faixa de cor 3	
+forf3:	beq $10, $0, forf4i
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	addi $8, $8, 4
+	addi $10, $10, -1
+	j forf3
+	
+forf4i:  addi $10, $0, 1024
+	addi $9, $0, 0x0d0634 # faixa de cor 4
+forf4:	beq $10, $0, forf5i
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	addi $8, $8, 4
+	addi $10, $10, -1
+	j forf4
+	
+forf5i:	addi $10, $0, 1024
+	addi $9, $0, 0x120845 # faixa de cor 5
+forf5:	beq $10, $0, forf6i
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	addi $8, $8, 4
+	addi $10, $10, -1
+	j forf5
+	
+forf6i:  addi $10, $0, 1024
+	addi $9, $0, 0x160a57 # faixa de cor 6
+forf6:	beq $10, $0, forf7i
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	addi $8, $8, 4
+	addi $10, $10, -1
+	j forf6
+	
+forf7i:  addi $10, $0, 1024
+	addi $9, $0, 0x1b0c68 # faixa de cor 7
+forf7:	beq $10, $0, forf8i
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	addi $8, $8, 4
+	addi $10, $10, -1
+	j forf7
+	
+forf8i:  addi $10, $0, 1024
+	addi $9, $0, 0x1f0e7a # faixa de cor 8
+forf8:	beq $10, $0, continuaestrelasf
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	addi $8, $8, 4
+	addi $10, $10, -1
+	j forf8
+continuaestrelasf:
+	# pinta estrelas
+estrelasf: 
+	# cinzas
+	#	estrela 1
+	addi $9, $0, 0xcfd8dc # cor 
+	lui $8, 0x1001 
+	addi $8, $8, 2120
+	sw $9, 0($8) 
+	sw $9, 32768($8)# SHADOWN
+	#	estrela 2
+	lui $8, 0x1001 
+	addi $8, $8, 8176
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	
+	# amarelas
+	#	estrela 1
+	addi $9, $0, 0xffc107 # cor
+	lui $8, 0x1001 
+	addi $8, $8, 5672
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	#	estrela 2
+	lui $8, 0x1001 
+	addi $8, $8, 14788
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	#	estrela 3
+	lui $8, 0x1001 
+	addi $8, $8, 28412
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	
+	# azul
+	#	estrela 1
+	addi $9, $0, 0x42a5f5 # cor
+	lui $8, 0x1001 
+	addi $8, $8, 13360
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	#	estrela 2
+	lui $8, 0x1001 
+	addi $8, $8, 15752
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	
+	# roxo
+	#	estrela 1
+	addi $9, $0, 0xaa00ff # cor
+	lui $8, 0x1001 
+	addi $8, $8, 2976
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	#	estrela 2
+	lui $8, 0x1001 
+	addi $8, $8, 21120
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	#	estrela 2
+	lui $8, 0x1001 
+	addi $8, $8, 26664
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+	#	estrela 2
+	lui $8, 0x1001 
+	addi $8, $8, 27028
+	sw $9, 0($8)
+	sw $9, 32768($8)# SHADOWN
+# fim estrelas
+
+contacabajogo: 
+	jal resetOito # reseta o reg8
+	# ponto 1 WIN 
+	addi $8, $8, 11928
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 2 WIN 
+	addi $8, $8, 516 
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 3 WIN 
+	addi $8, $8, 516 
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 4 WIN 
+	addi $8, $8, 516
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 5  WIN 
+	addi $8, $8, 516 
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 6 WIN 
+	addi $8, $8, 4 
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 7 WIN 
+	addi $8, $8, -508 
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 8 WIN 
+	addi $8, $8, -508 
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 9 WIN 
+	addi $8, $8, -508 
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 10 WIN 
+	addi $8, $8, -508 
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 11 WIN 
+	addi $8, $8, 516 
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 12 WIN 
+	addi $8, $8, 516 
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 13 WIN 
+	addi $8, $8, 516 
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 14 WIN 
+	addi $8, $8, 516 
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 15 WIN 
+	addi $8, $8, 4 
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	
+	# ponto 16 WIN 
+	addi $8, $8, -508
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 17 WIN 
+	addi $8, $8, -508
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 18 WIN 
+	addi $8, $8, -508
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 19 WIN 
+	addi $8, $8, -508
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 20 WIN 
+	addi $8, $8, 16
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 21 WIN 
+	addi $8, $8, 512
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 22 WIN 
+	addi $8, $8, 512
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 23 WIN 
+	addi $8, $8, 512
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 24 WIN 
+	addi $8, $8, 512
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	
+	# ponto 25 WIN 
+	addi $8, $8, 16
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 26 WIN 
+	addi $8, $8, -508
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 27 WIN 
+	addi $8, $8, -512
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, -508
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, -508
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, 4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, 516
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, 516
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, 516
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, 512
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, 4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	
+	# ponto 28 WIN 
+	addi $8, $8, -508
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, -508
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8) 
+	
+	# ponto 28 WIN 
+	addi $8, $8, -508
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)  
+	
+	# ponto 28 WIN 
+	addi $8, $8, -508
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	
+	# ponto 28 WIN 
+	addi $8, $8, 3588
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8) 
+	
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)  
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)  
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)  
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8) 
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8) 
+	
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)  
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)  
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)  
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	
+	# ponto 28 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	
+	
+	
+	
+	
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	jal time
+	lui $1, 0xffff  # reg para ver se o user digitou algo
+	lw $17, 4($1) # se for diferente de zero, algo foi digitado.
+	addi $18, $0, 'r' 
+	beq $17, $0, fimdeverdade # checar se o user digitou alguma coisa
+	beq $17, $18, reiniciodojogo
+
+fimdeverdade:
+	# acaba jogo
+	addi $2, $0, 10
+	syscall
+	
+# Outras funcionalidades
+	
+asteroidePosInicial:
+	# colocar na posição inicial
+	addi $13, $0, -4868
+	add $7, $0, $0 # reinicia 
+	
+	j continuaDeleteAsteroideTres # asteroide Tres
+	
+	
+asteroideV2PosInicial:
+	addi $14, $0, -4992
+	
+	j continuaDeleteAsteroideV2
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+

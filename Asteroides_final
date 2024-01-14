@@ -615,11 +615,6 @@ deletarAsteroideUm:
 	sw $9, 0($8)	
 	sw $9, 32768($8)
 	
-	# fazer o asteroide voltar pra posição inicial quando chegar no fim (em construção)
-	# Se 33.020 < $13, o reg 13 volta a ser 754 e recomeça (looping)
-	#slt $10, $11, $13
-	#bne $10, $0, asteroideCimaPosInicial
-	
 	# finalizando
 	add $31, $0, $12 # recuperando o valor de $31
 	#jr $31
@@ -1751,7 +1746,7 @@ resetOito:
 
 # Dar um tempo
 time:	
-	addi $20, $0, 20000
+	addi $20, $0, 30000 # Alterar para o tempo que sua máquina desempenhar melhor
 foriniciotime:
 	beq $20, $0, fimTime
         nop
@@ -2066,259 +2061,259 @@ contacabajogo:
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
-	# ponto 28 WIN 
+	# ponto 29 WIN 
 	addi $8, $8, -508
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
-	# ponto 28 WIN 
+	# ponto 30 WIN 
 	addi $8, $8, 4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
-	# ponto 28 WIN 
+	# ponto 31 WIN 
 	addi $8, $8, 516
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
-	# ponto 28 WIN 
+	# ponto 32 WIN 
 	addi $8, $8, 516
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
-	# ponto 28 WIN 
+	# ponto 33 WIN 
 	addi $8, $8, 516
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
-	# ponto 28 WIN 
+	# ponto 34 WIN 
 	addi $8, $8, 512
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
-	# ponto 28 WIN 
+	# ponto 35 WIN 
 	addi $8, $8, 4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
 	
-	# ponto 28 WIN 
+	# ponto 36 WIN 
 	addi $8, $8, -508
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
-	# ponto 28 WIN 
+	# ponto 37 WIN 
 	addi $8, $8, -508
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8) 
 	
-	# ponto 28 WIN 
+	# ponto 38 WIN 
 	addi $8, $8, -508
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)  
 	
-	# ponto 28 WIN 
+	# ponto 39 WIN 
 	addi $8, $8, -508
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
 	
-	# ponto 28 WIN 
+	# ponto 40 WIN 
 	addi $8, $8, 3588
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
 	
-	# ponto 28 WIN 
+	# ponto 41 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
-	# ponto 28 WIN 
-	addi $8, $8, -4
-	addi $9, $0, 0xfff200 # cor
-	sw $9, 0($8)
-	
-	
-	# ponto 28 WIN 
-	addi $8, $8, -4
-	addi $9, $0, 0xfff200 # cor
-	sw $9, 0($8)
-	
-	# ponto 28 WIN 
-	addi $8, $8, -4
-	addi $9, $0, 0xfff200 # cor
-	sw $9, 0($8)
-	
-	# ponto 28 WIN 
+	# ponto 42 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
 	
-	# ponto 28 WIN 
+	# ponto 43 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 44 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 45 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	
+	# ponto 46 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8) 
 	
 	
-	# ponto 28 WIN 
+	# ponto 47 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
-	# ponto 28 WIN 
+	# ponto 48 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
 	
-	# ponto 28 WIN 
+	# ponto 49 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)  
 	
-	# ponto 28 WIN 
+	# ponto 50 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
-	# ponto 28 WIN 
+	# ponto 51 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
 	
-	# ponto 28 WIN 
+	# ponto 52 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)  
 	
-	# ponto 28 WIN 
+	# ponto 53 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
-	# ponto 28 WIN 
+	# ponto 54 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
 	
-	# ponto 28 WIN 
+	# ponto 55 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)  
 	
-	# ponto 28 WIN 
+	# ponto 56 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
-	# ponto 28 WIN 
+	# ponto 57 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
 	
-	# ponto 28 WIN 
+	# ponto 58 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8) 
 	
-	# ponto 28 WIN 
+	# ponto 59 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
-	# ponto 28 WIN 
-	addi $8, $8, -4
-	addi $9, $0, 0xfff200 # cor
-	sw $9, 0($8)
-	
-	
-	# ponto 28 WIN 
-	addi $8, $8, -4
-	addi $9, $0, 0xfff200 # cor
-	sw $9, 0($8)
-	
-	# ponto 28 WIN 
-	addi $8, $8, -4
-	addi $9, $0, 0xfff200 # cor
-	sw $9, 0($8)
-	
-	# ponto 28 WIN 
+	# ponto 60 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
 	
-	# ponto 28 WIN 
+	# ponto 61 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 62 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	# ponto 63 WIN 
+	addi $8, $8, -4
+	addi $9, $0, 0xfff200 # cor
+	sw $9, 0($8)
+	
+	
+	# ponto 64 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8) 
 	
 	
-	# ponto 28 WIN 
+	# ponto 65 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
-	# ponto 28 WIN 
+	# ponto 66 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
 	
-	# ponto 28 WIN 
+	# ponto 67 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)  
 	
-	# ponto 28 WIN 
+	# ponto 68 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
-	# ponto 28 WIN 
+	# ponto 69 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
 	
-	# ponto 28 WIN 
+	# ponto 70 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)  
 	
-	# ponto 28 WIN 
+	# ponto 71 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
-	# ponto 28 WIN 
+	# ponto 72 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
 	
-	# ponto 28 WIN 
+	# ponto 73 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)  
 	
-	# ponto 28 WIN 
+	# ponto 74 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
-	# ponto 28 WIN 
+	# ponto 75 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)
 	
 	
-	# ponto 28 WIN 
+	# ponto 76 WIN 
 	addi $8, $8, -4
 	addi $9, $0, 0xfff200 # cor
 	sw $9, 0($8)

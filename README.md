@@ -5,13 +5,13 @@ A imagem a seguir mostra a tela do jogo em execução. Foi utilizada a aplicaç�
 
 ## Interagindo com o teclado
 Para interagir com o jogo, é necessário procurar por Tools, clicar em "Keyboard and Display MMIO Simulator" e conectar com o MIPS. Teremos essa tela de Keyboard na qual ao digitarmos comandos, terão diferentes interações:
-### ' ' - lança um tiro
-### 'p' - vai para cima com maior velocidade
-### 'a' - vai em direção a esquerda
-### 'w' - vai para cima
-### 's' - vai em direção para baixo
-### 'd' - vai em direção a esquerda
-### 'r' - ao final do jogo, poderá recomeçar
+' ' - lança um tiro
+'p' - vai para cima com maior velocidade
+'a' - vai em direção a esquerda
+'w' - vai para cima
+'s' - vai em direção para baixo
+'d' - vai em direção a esquerda
+'r' - ao final do jogo, poderá recomeçar
 ![image](https://github.com/deborasamara/Asteroides-Assembly/assets/50723433/a5cf8c66-bc7f-4ebf-a59e-285752e0e67d)
 
 

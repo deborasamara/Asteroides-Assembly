@@ -16,6 +16,8 @@ Para interagir com o jogo, é necessário procurar por Tools, clicar em "Keyboar
   
 ![image](https://github.com/deborasamara/Asteroides-Assembly/assets/50723433/a5cf8c66-bc7f-4ebf-a59e-285752e0e67d )
 
+Link do youtube sobre o jogo: https://youtu.be/eE-hynXeC8A 
+
 
 
 
